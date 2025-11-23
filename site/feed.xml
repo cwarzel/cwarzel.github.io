@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Your Name</title>
+    <link>https://your-domain.example</link>
+    <description>Writing by Your Name</description>
+    <lastBuildDate>Sun, 23 Nov 2025 03:19:53 </lastBuildDate>
+    <item>
+      <title>Hello, world (site launch)</title>
+      <link>https://your-domain.example/posts/hello-world.html</link>
+      <guid>https://your-domain.example/posts/hello-world.html</guid>
+      <pubDate>Sun, 23 Nov 2025 03:19:53 </pubDate>
+      <description>This is the first post on my new site.</description>
+    </item>
+  </channel>
+</rss>
