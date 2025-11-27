@@ -1,11 +1,10 @@
-
 :root {
   --bg: #ffffff;
   --text: #141415;
   --muted: #6b7280;
   --link: #0a58ca;
   --border: #e5e7eb;
-  --maxw: 980px;
+  --maxw: 960px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,7 +36,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Overall layout: left sidebar, right content */
+/* Page layout: sidebar left, content right */
 .layout {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -56,54 +55,54 @@ body {
 }
 
 /* LEFT SIDEBAR */
-.site-sidebar-name {
-  font-size: 1.5rem;
+.sidebar-name {
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
 }
 
-.site-sidebar-email {
+.sidebar-email {
   font-size: 0.85rem;
   color: var(--muted);
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.2rem;
 }
 
-.site-sidebar-email a {
+.sidebar-email a {
   color: inherit;
   text-decoration: none;
 }
 
-.site-sidebar-email a:hover {
+.sidebar-email a:hover {
   text-decoration: underline;
 }
 
-.site-sidebar-nav {
+.sidebar-nav {
   list-style: none;
   padding: 0;
   margin: 0;
   font-size: 0.95rem;
 }
 
-.site-sidebar-nav li {
+.sidebar-nav li {
   margin: 0.25rem 0;
 }
 
-.site-sidebar-nav a {
+.sidebar-nav a {
   color: var(--text);
   text-decoration: none;
 }
 
-.site-sidebar-nav a[aria-current="page"] {
+.sidebar-nav a[aria-current="page"] {
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.site-sidebar-nav a:hover {
+.sidebar-nav a:hover {
   text-decoration: underline;
 }
 
-/* RIGHT COLUMN */
+/* RIGHT CONTENT COLUMN */
 main {
   max-width: 640px;
 }
@@ -119,11 +118,11 @@ h1 {
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.09em;
   color: var(--muted);
-  margin-top: 1.5rem;
+  margin-top: 1.4rem;
 }
 
 p {
@@ -136,7 +135,7 @@ a {
 
 /* Lists in main content */
 main ul {
-  margin: 0.4rem 0 0.8rem 1.25rem;
+  margin: 0.3rem 0 0.8rem 1.25rem;
   padding: 0;
 }
 
@@ -170,14 +169,6 @@ main ul {
   margin-left: 0.5rem;
   color: var(--muted);
   font-size: 0.85rem;
-}
-
-/* Intro card */
-.card {
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  padding: 0.9rem 1rem;
-  margin-bottom: 1.2rem;
 }
 
 /* Footer */
