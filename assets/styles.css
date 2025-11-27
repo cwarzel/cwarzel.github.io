@@ -4,7 +4,7 @@
   --muted: #6b7280;
   --link: #0a58ca;
   --border: #e5e7eb;
-  --maxw: 960px;
+  --maxw: 980px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,14 +36,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Overall layout: sidebar left, content right */
+/* Overall page layout */
 .layout {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 2rem 1rem 4rem;
   display: grid;
-  grid-template-columns: minmax(190px, 220px) minmax(0, 1fr);
-  column-gap: 2.5rem;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+  column-gap: 3rem;
   row-gap: 2rem;
   align-items: flex-start;
 }
@@ -54,63 +54,57 @@ body {
   }
 }
 
-/* Sidebar: name, email, nav */
-.sidebar-name {
-  font-size: 1.4rem;
+/* LEFT SIDEBAR: site-wide navigation */
+.site-sidebar-name {
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.2rem;
 }
 
-.sidebar-email {
+.site-sidebar-email {
   font-size: 0.85rem;
   color: var(--muted);
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
 }
 
-.sidebar-email a {
+.site-sidebar-email a {
   color: inherit;
   text-decoration: none;
 }
 
-.sidebar-email a:hover {
+.site-sidebar-email a:hover {
   text-decoration: underline;
 }
 
-.nav {
+.site-sidebar-nav {
   list-style: none;
   padding: 0;
   margin: 0;
   font-size: 0.95rem;
 }
 
-.nav li {
+.site-sidebar-nav li {
   margin: 0.25rem 0;
 }
 
-.nav a {
+.site-sidebar-nav a {
   color: var(--text);
   text-decoration: none;
 }
 
-.nav a[aria-current="page"] {
+.site-sidebar-nav a[aria-current="page"] {
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.nav a:hover {
+.site-sidebar-nav a:hover {
   text-decoration: underline;
 }
 
-/* Main content area */
+/* RIGHT CONTENT COLUMN */
 main {
   max-width: 640px;
-}
-
-main img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
 }
 
 h1, h2, h3 {
@@ -139,19 +133,19 @@ a {
   color: var(--link);
 }
 
-/* Lists in content */
+/* Lists */
 main ul {
   margin: 0.4rem 0 0.8rem 1.25rem;
   padding: 0;
 }
 
-/* Metadata text (dates, etc.) */
+/* Metadata (dates, etc.) */
 .meta {
   font-size: 0.85rem;
   color: var(--muted);
 }
 
-/* Post lists (for home/catalog/micro) */
+/* Post lists for home/catalog/micro */
 .post-list {
   list-style: none;
   padding: 0;
@@ -167,27 +161,4 @@ main ul {
   color: var(--text);
 }
 
-.post-list a:hover {
-  text-decoration: underline;
-}
-
-.post-list .date {
-  margin-left: 0.5rem;
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-/* Optional "card" for a little intro box */
-.card {
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  padding: 0.9rem 1rem;
-  margin-bottom: 1.2rem;
-}
-
-/* Footer */
-footer {
-  margin-top: 3rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
+.post-li
