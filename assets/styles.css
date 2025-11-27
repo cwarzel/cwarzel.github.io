@@ -1,3 +1,4 @@
+
 :root {
   --bg: #ffffff;
   --text: #141415;
@@ -36,7 +37,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Overall page layout */
+/* Overall layout: left sidebar, right content */
 .layout {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -54,7 +55,7 @@ body {
   }
 }
 
-/* LEFT SIDEBAR: site-wide navigation */
+/* LEFT SIDEBAR */
 .site-sidebar-name {
   font-size: 1.5rem;
   font-weight: 600;
@@ -102,7 +103,7 @@ body {
   text-decoration: underline;
 }
 
-/* RIGHT CONTENT COLUMN */
+/* RIGHT COLUMN */
 main {
   max-width: 640px;
 }
@@ -133,7 +134,7 @@ a {
   color: var(--link);
 }
 
-/* Lists */
+/* Lists in main content */
 main ul {
   margin: 0.4rem 0 0.8rem 1.25rem;
   padding: 0;
@@ -145,7 +146,7 @@ main ul {
   color: var(--muted);
 }
 
-/* Post lists for home/catalog/micro */
+/* Post lists */
 .post-list {
   list-style: none;
   padding: 0;
@@ -161,4 +162,27 @@ main ul {
   color: var(--text);
 }
 
-.post-li
+.post-list a:hover {
+  text-decoration: underline;
+}
+
+.post-list .date {
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Intro card */
+.card {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}

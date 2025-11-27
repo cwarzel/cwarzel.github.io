@@ -1,3 +1,14 @@
-# Minimal site (thin & small)
+# Charlie Sidebar Site
 
-Upload these files to the root of your `cwarzel.github.io` repo. Edit HTML directly; tweak sizes in `assets/styles.css`.
+Text-first personal site with left-hand navigation for the whole site.
+
+## How to use
+
+1. Unzip this folder.
+2. Upload the *contents* (index.html, about.html, etc. plus assets/ and posts/) to the root of your `cwarzel.github.io` repo on GitHub.
+3. Commit the changes.
+4. Visit https://cwarzel.github.io
+
+To edit:
+- Change text directly in the HTML files.
+- Add posts by duplicating a file in /posts and linking from catalog.html and/or index.html.
