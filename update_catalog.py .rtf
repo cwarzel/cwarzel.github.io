@@ -1,9 +1,159 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+#!/usr/bin/env python3
+import requests
+import datetime
+import html
+import xml.etree.ElementTree as ET
+from pathlib import Path
 
-\f0\fs24 \cf0 update_catalog.py\
-}
+FEED_URL = "https://www.theatlantic.com/feed/author/charlie-warzel/"
+CATALOG_PATH = Path("catalog.html")
+MAX_ITEMS = 50  # tweak if you want more or fewer
+
+
+def fetch_feed(url: str) -> str:
+    resp = requests.get(url, timeout=15)
+    resp.raise_for_status()
+    return resp.text
+
+
+def parse_items(feed_xml: str):
+    """
+    Return a list of dicts: {title, link, date}
+    Date is YYYY-MM-DD (or "" if missing).
+    """
+    root = ET.fromstring(feed_xml)
+    # RSS feeds usually: <rss><channel><item>…</item></channel></rss>
+    channel = root.find("channel")
+    if channel is None:
+        return []
+
+    items = []
+    for item in channel.findall("item"):
+        title_el = item.find("title")
+        link_el = item.find("link")
+        pub_el = item.find("pubDate")
+
+        title = title_el.text.strip() if title_el is not None and title_el.text else ""
+        link = link_el.text.strip() if link_el is not None and link_el.text else ""
+        pub_raw = pub_el.text.strip() if pub_el is not None and pub_el.text else ""
+
+        # Try to parse pubDate -> YYYY-MM-DD
+        date_str = ""
+        if pub_raw:
+            try:
+                # Example format: "Wed, 20 Nov 2024 10:00:00 -0400"
+                dt = datetime.datetime.strptime(pub_raw, "%a, %d %b %Y %H:%M:%S %z")
+                date_str = dt.strftime("%Y-%m-%d")
+            except Exception:
+                # If parsing fails, just leave date_str empty
+                date_str = ""
+
+        if title and link:
+            items.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_str,
+                }
+            )
+
+    return items
+
+
+def build_list_html(items):
+    """
+    Build the HTML for the list of posts.
+    We'll produce something like:
+
+      <h2>From The Atlantic</h2>
+      <ul class="post-list">
+        <li>
+          <a href="...">Title</a>
+          <span class="date">— <span class="meta">YYYY-MM-DD</span></span>
+        </li>
+        ...
+      </ul>
+    """
+    parts = []
+    parts.append('      <h2>From The Atlantic</h2>')
+    parts.append('      <ul class="post-list">')
+
+    for item in items[:MAX_ITEMS]:
+        title = html.escape(item["title"])
+        link = html.escape(item["link"])
+        date = item["date"] or ""
+        if date:
+            date_html = f'<span class="date">— <span class="meta">{date}</span></span>'
+        else:
+            date_html = ""
+
+        li = f'        <li>\n          <a href="{link}">{title}</a> {date_html}\n        </li>'
+        parts.append(li)
+
+    parts.append("      </ul>")
+    return "\n".join(parts)
+
+
+def update_catalog():
+    if not CATALOG_PATH.exists():
+        raise SystemExit(f"catalog.html not found at {CATALOG_PATH.resolve()}")
+
+    print("Fetching feed…")
+    xml_text = fetch_feed(FEED_URL)
+    items = parse_items(xml_text)
+    if not items:
+        raise SystemExit("No items found in feed; not touching catalog.html.")
+
+    list_html = build_list_html(items)
+
+    print("Reading catalog.html…")
+    original = CATALOG_PATH.read_text(encoding="utf-8")
+
+    # We’ll look for the block starting with <h2> and <ul class="post-list">,
+    # and replace it entirely.
+    marker_start = "<h2>From The Atlantic</h2>"
+    marker_ul = '<ul class="post-list">'
+
+    if marker_start in original:
+        # Replace from marker_start to end of the </ul> that follows
+        before, _, rest = original.partition(marker_start)
+        _, ul_start, rest2 = rest.partition(marker_ul)
+
+        # rest2 now starts just after the opening <ul class="post-list">
+        # we need to find the closing </ul> that matches.
+        ul_close = "</ul>"
+        ul_close_idx = rest2.find(ul_close)
+        if ul_close_idx == -1:
+            raise SystemExit("Could not find closing </ul> after From The Atlantic block.")
+
+        after = rest2[ul_close_idx + len(ul_close):]
+        new_content = before + list_html + after
+    else:
+        # If marker not found, try to find the first <h1>Catalog</h1> and insert after it.
+        marker_catalog = "<h1>Catalog</h1>"
+        if marker_catalog not in original:
+            raise SystemExit("Could not find <h1>Catalog</h1> in catalog.html")
+
+        before, _, after = original.partition(marker_catalog)
+        # keep the catalog heading and meta text as-is, and inject list_html after that block's metadata
+        # e.g., we expect something like:
+        #   <h1>Catalog</h1>
+        #   <p class="meta">…</p>
+        # so we place our list_html after that.
+        meta_marker = "</p>"
+        if meta_marker in after:
+            meta_before, meta_close, meta_after = after.partition(meta_marker)
+            # include the closing </p> then insert our list_html
+            new_after = meta_before + meta_close + "\n\n" + list_html + meta_after
+            new_content = before + marker_catalog + new_after
+        else:
+            # Fallback: just stick the list_html right after <h1>Catalog</h1>
+            new_content = before + marker_catalog + "\n" + list_html + after
+
+    print("Writing updated catalog.html…")
+    CATALOG_PATH.write_text(new_content, encoding="utf-8")
+    print("Done. Now commit and push the changes to GitHub.")
+
+
+if __name__ == "__main__":
+  update_catalog()
