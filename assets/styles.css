@@ -177,3 +177,13 @@ footer {
   font-size: 0.85rem;
   color: var(--muted);
 }
+
+.about-photo {
+  display: block;
+  max-width: 220px;      /* medium size */
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* square box */
+  object-fit: cover;     /* crop to square nicely */
+  border-radius: 12px;
+  margin: 0.75rem 0 1.25rem;
+}
