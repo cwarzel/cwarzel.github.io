@@ -11,8 +11,7 @@
 <body>
   <div class="container">
     <header class="header">
-      <h1 class="site-name"><a href="/">{{ site.title }}</a></h1>
-      <div class="site-email"><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>
+      <a href="/" class="site-name">{{ site.title }}</a>
       <nav class="nav">
         <a href="/blog"{% if page.url == '/blog/' or page.url contains '/blog/' %} class="active"{% endif %}>Blog</a>
         <a href="/log"{% if page.url == '/log/' %} class="active"{% endif %}>Log</a>
