@@ -1,27 +1,21 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Charlie Warzel</title>
-    <link>https://cwarzel.github.io</link>
-    <description>Writing by Charlie Warzel</description>
-    <lastBuildDate>Thu, 27 Nov 2025 03:13:44 </lastBuildDate>
+    <title>{{ site.title }}</title>
+    <description>{{ site.description }}</description>
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml"/>
+    {% for post in site.posts limit:20 %}
     <item>
-      <title>Notes on the attention economy</title>
-      <link>https://cwarzel.github.io/posts/attention-economy.html</link>
-      <guid>https://cwarzel.github.io/posts/attention-economy.html</guid>
-      <pubDate>Thu, 27 Nov 2025 03:13:44 </pubDate>
+      <title>{{ post.title | xml_escape }}</title>
+      <description>{{ post.excerpt | xml_escape }}</description>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <link>{{ site.url }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
     </item>
-    <item>
-      <title>On culture wars and feeds</title>
-      <link>https://cwarzel.github.io/posts/internet-culture.html</link>
-      <guid>https://cwarzel.github.io/posts/internet-culture.html</guid>
-      <pubDate>Thu, 27 Nov 2025 03:13:44 </pubDate>
-    </item>
-    <item>
-      <title>Hello, world (site launch)</title>
-      <link>https://cwarzel.github.io/posts/hello-world.html</link>
-      <guid>https://cwarzel.github.io/posts/hello-world.html</guid>
-      <pubDate>Thu, 27 Nov 2025 03:13:44 </pubDate>
-    </item>
+    {% endfor %}
   </channel>
 </rss>

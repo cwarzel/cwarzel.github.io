@@ -1,0 +1,27 @@
+# Log: What I'm reading, watching, and listening to
+# Edit this file to update your log page
+
+reading:
+  - title: "Example Book Title"
+    author: "Author Name"
+    note: "A brief note about why you liked it or what you're thinking about."
+
+  - title: "Another Book"
+    author: "Another Author"
+    # note is optional
+
+watching:
+  - title: "Example Film or Show"
+    year: 2024
+    note: "Optional thoughts."
+
+  - title: "Another Thing"
+    year: 2023
+
+listening:
+  - title: "Album Name"
+    artist: "Artist Name"
+    note: "Optional note about the music."
+
+  - title: "Another Album"
+    artist: "Another Artist"

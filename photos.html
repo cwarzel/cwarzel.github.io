@@ -1,0 +1,19 @@
+---
+layout: default
+title: Photos
+---
+<div class="section-header">
+  <h1>Photos</h1>
+</div>
+
+{% if site.photos.size > 0 %}
+<div class="photo-grid">
+  {% for photo in site.photos reversed %}
+  <a href="{{ photo.url }}">
+    <img src="{{ photo.image }}" alt="{{ photo.title }}" loading="lazy">
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p class="text-secondary">No photos yet. Add photos to the <code>_photos</code> folder.</p>
+{% endif %}

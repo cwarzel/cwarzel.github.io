@@ -1,51 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Home — Charlie Warzel</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Writing by Charlie Warzel">
-  <link rel="stylesheet" href="/assets/styles.css">
-</head>
-<body>
-  <div class="layout">
-    <aside>
-      <div class="sidebar-name">Charlie Warzel</div>
-      <div class="sidebar-email">
-        <a href="mailto:cwarzel@theatlantic.com">cwarzel@theatlantic.com</a>
-      </div>
-      <ul class="sidebar-nav">
-        <li><a href="/" aria-current="page">Home</a></li>
-        <li><a href="/catalog.html">Catalog</a></li>
-        <li><a href="/micro.html">Micro</a></li>
-        <li><a href="/projects.html">Projects</a></li>
-        <li><a href="/about.html">About</a></li>
-      </ul>
-    </aside>
+---
+layout: default
+title: Home
+---
+<p class="intro">Hi, I'm Charlie. I write about technology, culture, and power on the internet.</p>
 
-    <main>
-      <p>Hi, I’m Charlie. I write about technology, culture, and power on the internet.</p>
+<div class="home-section">
+  <h2>Recently</h2>
+  <ul class="post-list">
+    {% for post in site.posts limit:5 %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      <time>{{ post.date | date: "%B %-d, %Y" }}</time>
+    </li>
+    {% endfor %}
+  </ul>
+  {% if site.posts.size > 5 %}
+  <p><a href="/blog">View all posts &rarr;</a></p>
+  {% endif %}
+</div>
 
-      <h2>Recently</h2>
-      <ul class="post-list">
-        <li>
-          <a href="/posts/hello-world.html">Hello, world (site launch)</a>
-          <span class="date">— <span class="meta">2025-11-26</span></span>
-        </li>
-        <li>
-          <a href="/posts/attention-economy.html">Notes on the attention economy</a>
-          <span class="date">— <span class="meta">2025-11-26</span></span>
-        </li>
-        <li>
-          <a href="/posts/internet-culture.html">On culture wars and feeds</a>
-          <span class="date">— <span class="meta">2025-11-26</span></span>
-        </li>
-      </ul>
-
-      <footer>
-        © 2025 Charlie Warzel
-      </footer>
-    </main>
-  </div>
-</body>
-</html>
+<div class="home-section">
+  <h2>Latest from The Atlantic</h2>
+  <p class="text-secondary">See my recent work at <a href="https://www.theatlantic.com/author/charlie-warzel/">The Atlantic</a>, or browse the <a href="/writing">full archive</a>.</p>
+</div>

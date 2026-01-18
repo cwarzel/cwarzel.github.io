@@ -1,0 +1,39 @@
+# Site settings
+title: Charlie Warzel
+description: Writing about technology, culture, and power on the internet
+author: Charlie Warzel
+email: cwarzel@theatlantic.com
+url: "https://cwarzel.blog"
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# Collections
+collections:
+  photos:
+    output: true
+    permalink: /photos/:title/
+  log:
+    output: false
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "photos"
+    values:
+      layout: "photo"
+
+# Exclude from build
+exclude:
+  - README.md
+  - update_catalog.py
+  - Gemfile
+  - Gemfile.lock
+  - "*.py"

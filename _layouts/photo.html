@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<article class="photo-single">
+  <figure>
+    <img src="{{ page.image }}" alt="{{ page.title }}">
+    {% if page.caption %}
+    <figcaption>{{ page.caption }}</figcaption>
+    {% endif %}
+  </figure>
+
+  <div class="photo-meta">
+    <h1>{{ page.title }}</h1>
+    {% if page.location %}<p class="location">{{ page.location }}</p>{% endif %}
+    {% if page.date %}<time>{{ page.date | date: "%B %Y" }}</time>{% endif %}
+  </div>
+
+  {% if content and content != "" %}
+  <div class="photo-description">
+    {{ content }}
+  </div>
+  {% endif %}
+</article>
