@@ -1,27 +1,43 @@
-# Log: What I'm reading, watching, and listening to
-# Edit this file to update your log page
-
 reading:
-  - title: "Moonbound"
-    author: "Robin Sloan"
-    note: "I have a hard time with sci-fi and fantasy but love Robin's writing. I found myself so easily pulled into that world and loved it."
-
-  - title: "Dogs"
-    author: "C. Mallon"
-    note: "Gorgeous prose. Brutal brutal subject matter. Ripped me up and somehow really enjoyed the whole process."
-
+- title: Moonbound
+  author: Robin Sloan
+  note: I have a hard time with sci-fi and fantasy but love Robin's writing. I found
+    myself so easily pulled into that world and loved it.
+- title: Dogs
+  author: C. Mallon
+  note: Gorgeous prose. Brutal brutal subject matter. Ripped me up and somehow really
+    enjoyed the whole process.
 watching:
-  - title: "Example Film or Show"
-    year: 2024
-    note: "Optional thoughts."
-
-  - title: "Another Thing"
-    year: 2023
-
+- title: Roofman
+  year: '2025'
+  rating: ★★½
+  note: I don’t think the director wanted to make a (sorta) comedy. weird vibe! sad!
+- title: Train Dreams
+  year: '2025'
+  rating: ★★★★★
+  note: Could sort of feel like I was being set up for a really big cry but still
+    wasn’t prepared for the level of weeping. Maybe the first film I’ve ever ...
+- title: Wake Up Dead Man
+  year: '2025'
+  rating: ★★★
+  note: Totally and completely fine.
+- title: One Battle After Another
+  year: '2025'
+  rating: ★★★★★
+  note: How good is it when Willa reverses the car and the camera’s mounted on the
+    door and it closes?! Ahhhhh yeah baby
+- title: Jay Kelly
+  year: '2025'
+  rating: ★★½
+  note: Had me until they went to Europe.
+- title: Marty Supreme
+  year: '2025'
+  rating: ★★★★
+  note: Love the faces in this movie. A+ casting and faces. Also love how it looks.
+    Felt like shit the whole timeI watched it in a way that was less satisf...
 listening:
-  - title: "Album Name"
-    artist: "Artist Name"
-    note: "Optional note about the music."
-
-  - title: "Another Album"
-    artist: "Another Artist"
+- title: Album Name
+  artist: Artist Name
+  note: Optional note about the music.
+- title: Another Album
+  artist: Another Artist
