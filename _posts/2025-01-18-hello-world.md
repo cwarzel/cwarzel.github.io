@@ -4,7 +4,7 @@ title: "Hello, World"
 date: 2025-01-18
 ---
 
-This is my new site. I wanted something simple - a place to write, share photos, and keep track of what I'm reading and watching.
+Welcome to ChuckTOWN. I wanted something simple - a place to write, share photos, and keep track of what I'm reading and watching.
 
 The design is intentionally minimal. No JavaScript frameworks, no complex build systems. Just text and images.
 
