@@ -9,23 +9,25 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
 </head>
 <body>
-  <nav class="nav">
-    <a href="/" class="nav-name">{{ site.title }}</a>
-    <div class="nav-links">
-      <a href="/blog"{% if page.url == '/blog/' or page.url contains '/blog/' %} class="active"{% endif %}>Blog</a>
-      <a href="/log"{% if page.url == '/log/' %} class="active"{% endif %}>Log</a>
-      <a href="/writing"{% if page.url == '/writing/' %} class="active"{% endif %}>Writing</a>
-      <a href="/photos"{% if page.url == '/photos/' %} class="active"{% endif %}>Photos</a>
-      <a href="/about"{% if page.url == '/about/' %} class="active"{% endif %}>About</a>
-    </div>
-  </nav>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="/" class="sidebar-name">{{ site.title }}</a>
+      <nav class="sidebar-nav">
+        <a href="/blog"{% if page.url == '/blog/' or page.url contains '/blog/' %} class="active"{% endif %}>Blog</a>
+        <a href="/log"{% if page.url == '/log/' %} class="active"{% endif %}>Log</a>
+        <a href="/writing"{% if page.url == '/writing/' %} class="active"{% endif %}>Writing</a>
+        <a href="/photos"{% if page.url == '/photos/' %} class="active"{% endif %}>Photos</a>
+        <a href="/about"{% if page.url == '/about/' %} class="active"{% endif %}>About</a>
+      </nav>
+    </aside>
 
-  <main class="main">
-    {{ content }}
-  </main>
+    <main class="main">
+      {{ content }}
 
-  <footer class="footer">
-    <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author }}</p>
-  </footer>
+      <footer class="footer">
+        <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author }}</p>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>

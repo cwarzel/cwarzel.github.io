@@ -1,6 +1,6 @@
 /* =========================================
    Charlie Warzel — Clean, minimal styling
-   Inspired by macwright.com
+   Left sidebar navigation, smaller font
    ========================================= */
 
 :root {
@@ -11,8 +11,8 @@
   --link-hover: #004499;
   --border: #e5e5e5;
   --code-bg: #f5f5f5;
-  --max-width: 640px;
-  --nav-width: 900px;
+  --content-width: 600px;
+  --sidebar-width: 160px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,8 +33,8 @@
 }
 
 html {
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -46,20 +46,117 @@ body {
   color: var(--text);
 }
 
+/* Layout: Sidebar + Main */
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, var(--content-width));
+  gap: 3rem;
+  max-width: calc(var(--sidebar-width) + var(--content-width) + 6rem);
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 2.5rem;
+  align-self: start;
+}
+
+.sidebar-name {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+  text-decoration: none;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar-name:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sidebar-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.sidebar-nav a:hover {
+  color: var(--text);
+}
+
+.sidebar-nav a.active {
+  color: var(--text);
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    position: static;
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-name {
+    margin-bottom: 0;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* Main content */
+.main {
+  min-width: 0;
+}
+
+/* Footer */
+.footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
 /* Typography */
 h1, h2, h3, h4 {
   font-weight: 600;
   line-height: 1.3;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
 }
 
-h1 { font-size: 1.75rem; }
-h2 { font-size: 1.35rem; }
-h3 { font-size: 1.15rem; }
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1.05rem; }
 
 p {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1.25rem 0;
 }
 
 a {
@@ -72,76 +169,15 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Navigation */
-.nav {
-  max-width: var(--nav-width);
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.nav-name {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--text);
-  text-decoration: none;
-}
-
-.nav-name:hover {
-  color: var(--text);
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--text);
-  text-decoration: none;
-}
-
-/* Main content */
-.main {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 1rem 1.5rem 4rem;
-}
-
-/* Footer */
-.footer {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-  border-top: 1px solid var(--border);
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.footer p {
-  margin: 0;
-}
-
 /* Post list (blog, writing, log) */
 .post-list {
   list-style: none;
   padding: 0;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 
 .post-list li {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .post-list a {
@@ -151,55 +187,55 @@ a:hover {
 .post-list time,
 .post-list .meta {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-left: 0.5rem;
 }
 
 /* Single post */
 .post-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .post-header h1 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .post-header time {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .post-content {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .post-content img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 2rem 0;
+  margin: 1.75rem 0;
 }
 
 .post-content figure {
-  margin: 2.5rem 0;
+  margin: 2rem 0;
   padding: 0;
 }
 
 .post-content figcaption {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
   font-style: italic;
 }
 
 /* Expand images beyond content width */
 .post-content img,
 .post-content figure {
-  max-width: calc(100% + 4rem);
-  margin-left: -2rem;
-  margin-right: -2rem;
-  width: calc(100% + 4rem);
+  max-width: calc(100% + 3rem);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  width: calc(100% + 3rem);
 }
 
 .post-content figure img {
@@ -210,10 +246,10 @@ a:hover {
 @media (max-width: 720px) {
   .post-content img,
   .post-content figure {
-    max-width: calc(100% + 3rem);
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-    width: calc(100% + 3rem);
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
   }
 }
 
@@ -231,7 +267,7 @@ pre {
   padding: 1rem;
   overflow-x: auto;
   border-radius: 4px;
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
 }
 
 pre code {
@@ -241,8 +277,8 @@ pre code {
 
 /* Blockquote */
 blockquote {
-  margin: 1.5rem 0;
-  padding-left: 1.25rem;
+  margin: 1.25rem 0;
+  padding-left: 1rem;
   border-left: 3px solid var(--border);
   color: var(--text-secondary);
   font-style: italic;
@@ -255,9 +291,9 @@ blockquote p:last-child {
 /* Photos page */
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
 }
 
 .photo-grid a {
@@ -266,7 +302,7 @@ blockquote p:last-child {
 
 .photo-grid img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
   display: block;
   transition: opacity 0.2s;
@@ -278,11 +314,10 @@ blockquote p:last-child {
 
 /* Single photo page */
 .photo-single figure {
-  margin: 0 0 2rem 0;
-  /* Full bleed photo */
-  max-width: calc(100% + 4rem);
-  margin-left: -2rem;
-  margin-right: -2rem;
+  margin: 0 0 1.5rem 0;
+  max-width: calc(100% + 3rem);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
 }
 
 .photo-single img {
@@ -292,15 +327,15 @@ blockquote p:last-child {
 }
 
 .photo-single figcaption {
-  padding: 0.75rem 2rem 0;
+  padding: 0.5rem 1.5rem 0;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-style: italic;
 }
 
 .photo-meta h1 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .photo-meta .location {
@@ -310,33 +345,33 @@ blockquote p:last-child {
 
 .photo-meta time {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 @media (max-width: 720px) {
   .photo-single figure {
-    max-width: calc(100% + 3rem);
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .photo-single figcaption {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 /* Log page */
 .log-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .log-section h2 {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .log-list {
@@ -346,8 +381,8 @@ blockquote p:last-child {
 }
 
 .log-list li {
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -365,26 +400,26 @@ blockquote p:last-child {
 
 .log-item-note {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
 }
 
 /* About page */
 .about-photo {
-  max-width: 200px;
+  max-width: 180px;
   border-radius: 4px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 /* Intro text on home */
 .intro {
-  font-size: 1.15rem;
-  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
 }
 
 /* Section headers */
 .section-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .section-header h1 {
@@ -393,32 +428,32 @@ blockquote p:last-child {
 
 /* Recently section on home */
 .home-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .home-section h2 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 /* Horizontal rule */
 hr {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 2rem 0;
+  margin: 1.75rem 0;
 }
 
 /* Lists in content */
 ul, ol {
-  padding-left: 1.5rem;
-  margin: 1rem 0 1.5rem;
+  padding-left: 1.25rem;
+  margin: 0.75rem 0 1.25rem;
 }
 
 li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 /* Utility */
