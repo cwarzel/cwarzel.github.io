@@ -9,8 +9,8 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
 </head>
 <body>
-  <div class="container">
-    <header class="header">
+  <div class="layout">
+    <aside class="sidebar">
       <a href="/" class="site-name">{{ site.title }}</a>
       <nav class="nav">
         <a href="/blog"{% if page.url == '/blog/' or page.url contains '/blog/' %} class="active"{% endif %}>Blog</a>
@@ -19,15 +19,15 @@
         <a href="/photos"{% if page.url == '/photos/' %} class="active"{% endif %}>Photos</a>
         <a href="/about"{% if page.url == '/about/' %} class="active"{% endif %}>About</a>
       </nav>
-    </header>
+    </aside>
 
     <main class="main">
       {{ content }}
-    </main>
 
-    <footer class="footer">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author }}</p>
-    </footer>
+      <footer class="footer">
+        <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author }}</p>
+      </footer>
+    </main>
   </div>
 </body>
 </html>
